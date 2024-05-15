@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Checkout repository
-                git url: 'https://github.com/nafrinmeir/class.git'
+                git branch: 'main', url: 'https://github.com/nafrinmeir/class.git'
                 
                 // Build Docker image
                 script {
