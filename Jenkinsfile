@@ -11,7 +11,7 @@ pipeline {
                 //script {
                 //    docker.build('your_docker_image_name', '.')
                 //    sudo docker ps
-                }
+                //}
             }
         }
     }
