@@ -8,9 +8,9 @@ pipeline {
                 git url: 'https://github.com/nafrinmeir/class.git'
                 
                 // Build Docker image
-                script {
+                //script {
                 //    docker.build('your_docker_image_name', '.')
-                    sudo docker ps
+                //    sudo docker ps
                 }
             }
         }
