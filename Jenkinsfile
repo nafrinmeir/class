@@ -9,7 +9,7 @@ pipeline {
                 
                 // Build Docker image
                 script {
-                    docker.build('nginx', '.')
+                    docker.build('nginx_image', '.')
                 }
             }
         }
