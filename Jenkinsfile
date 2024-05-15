@@ -9,7 +9,8 @@ pipeline {
                 
                 // Build Docker image
                 script {
-                    docker.build('your_docker_image_name', '.')
+                //    docker.build('your_docker_image_name', '.')
+                    sudo docker ps
                 }
             }
         }
