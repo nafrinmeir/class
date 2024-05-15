@@ -1,14 +1,8 @@
-FROM ubuntu:latest
+FROM nginx:latest
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get install -y <your_dependencies_here>
+# Copy your index.html file
+COPY index.html /usr/share/nginx/html/
 
-# Copy your application files
-COPY . /app
+# Expose port 8082
+EXPOSE 8082
 
-# Set the working directory
-WORKDIR /app
-
-# Define any commands you want to run when the container starts
-CMD ["<your_command_here>"]
