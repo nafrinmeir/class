@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define environment variables
-        DOCKER_IMAGE = 'my-nginx-image'
+        DOCKER_IMAGE = 'nginx'
         DOCKER_TAG = 'latest'
     }
 
