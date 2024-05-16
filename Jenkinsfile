@@ -12,7 +12,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the repository containing the Dockerfile and static content
-                git 'https://github.com/your-repo/your-project.git'
+                git 'https://github.com/nafrinmeir/class.git'
             }
         }
 
