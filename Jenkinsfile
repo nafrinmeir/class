@@ -5,6 +5,8 @@ pipeline {
         // Define environment variables
         DOCKER_IMAGE = 'nginx'
         DOCKER_TAG = 'latest'
+        CONTAINER_NAME = 'nginx-container'
+        PORT = '8082:80' // Change this if you want a different port mapping
     }
 
     stages {
@@ -20,8 +22,19 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image
-                    sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    // Navigate to the repository directory and build the Docker image
+                    dir('class') {
+                        sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    }
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Run the Docker container
+                    sh "docker run -d --name ${CONTAINER_NAME} -p ${PORT} ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
