@@ -30,7 +30,8 @@ pipeline {
             steps {
                 script {
                     // Clean up the local Docker environment
-                    sh 'docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG}'
+                    // sh 'docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG}'
+                    echo Cleanup
                 }
             }
         }
@@ -39,7 +40,8 @@ pipeline {
     post {
         always {
             // Clean up the workspace after the build
-            cleanWs()
+            // cleanWs()
+            echo always
         }
     }
 }
