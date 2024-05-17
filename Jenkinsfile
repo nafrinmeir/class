@@ -25,23 +25,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Cleanup') {
-            steps {
-                script {
-                    // Clean up the local Docker environment
-                    // sh 'docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG}'
-                    echo Cleanup
-                }
-            }
-        }
-    }
-
-    post {
-        always {
-            // Clean up the workspace after the build
-            // cleanWs()
-            echo always
-        }
     }
 }
