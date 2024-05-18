@@ -38,11 +38,12 @@ pipeline {
                 }
             }
         }
+    }
+    
         post {
             always {
             // Clean up the workspace after the build
             cleanWs()
             }
-        }
-    }
+        }    
 }
