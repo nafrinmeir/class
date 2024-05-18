@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     environment {
-        // Define environment variables
         DOCKER_IMAGE = 'nginx'
         DOCKER_TAG = 'latest'
-        CONTAINER_NAME = 'my_app_one'
+        CONTAINER_NAME = 'my_nginx_container'
         REPO_URL = 'https://github.com/nafrinmeir/class.git'
         REPO_DIR = 'class'
     }
@@ -50,6 +49,12 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
+                    // Stop any service using the port (e.g., another container)
+                    sh '''
+                    if [ $(lsof -t -i:8082) ]; then
+                        kill -9 $(lsof -t -i:8082) || true
+                    fi
+                    '''
                     // Run the Docker container with a specific name
                     sh 'docker run -d --name ${CONTAINER_NAME} -p 8082:80 ${DOCKER_IMAGE}:${DOCKER_TAG}'
                 }
