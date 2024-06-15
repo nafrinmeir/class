@@ -9,6 +9,10 @@ pipeline {
         REPO_DIR = 'class'
     }
 
+    tools {
+        sonarScanner 'SonarScanner' // Name of the SonarScanner tool installation in Jenkins
+    }
+
     stages {
         stage('Cleanup') {
             steps {
@@ -31,6 +35,19 @@ pipeline {
                 script {
                     // Clone the public repository
                     sh 'git clone ${REPO_URL} ${REPO_DIR}'
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner'
+                    withSonarQubeEnv('SonarQube') { // Name of the SonarQube server configuration in Jenkins
+                        dir("${REPO_DIR}") {
+                            sh "${scannerHome}/bin/sonar-scanner"
+                        }
+                    }
                 }
             }
         }
